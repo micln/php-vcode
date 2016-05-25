@@ -10,18 +10,21 @@ class VCode
         $seeds = explode("\n", file_get_contents('vcode_seed.txt'));
         $seed = $seeds[array_rand($seeds)];
 
-        $rands = preg_split('/(?<!^)(?!$)/u', $seed);
-        for ($n = 3; $n--;) {
-            shuffle($rands);
-            $this->list [] = join('', $rands);
+        $chars = preg_split('/(?<!^)(?!$)/u', $seed);
+        for ($n = 3; $n--; shuffle($chars)) {
+            $this->list [] = join('', $chars);
         }
-        
+
         $this->code = $seed;
         $this->list [] = $seed;
-        
+
         shuffle($this->list);
     }
 
+    /**
+     * @param $name $(form input[name])
+     * @return string
+     */
     public function renderHTML($name)
     {
         $output = '';
@@ -36,7 +39,7 @@ class VCode
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCode()
     {
