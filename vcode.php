@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zhangxing
- * Date: 16/5/25
- * Time: 下午10:11
- */
 
 class VCode
 {
